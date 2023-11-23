@@ -26,7 +26,14 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Move();
+        /*if (bump)
+        {
+            MoveBack();
+        }
+        else if (bump == false)
+        {*/
+            Move();
+        //}
         if(score == 4)
         {
             brana.SetActive(false);
@@ -72,23 +79,24 @@ public class Movement : MonoBehaviour
 
     /*IEnumerator MoveBack()
     {
-        Move();
+        Debug.Log("Moveback!");
         dir++; dir++;
-        yield return new WaitForSeconds(2f);
+        Move();
+        yield return new WaitForSeconds(2);
+        bump = false;
+        dir++; dir++;
         ChangeDir();
     }*/
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("Collide");
+        Debug.Log("Collide with " + collision.gameObject.name);
 
         if(collision != null)
         {
             if(collision.gameObject.name.Contains("Cedule"))
             {
                 bump = true;
-
-                //MoveBack();
 
                 ChangeDir();
             }

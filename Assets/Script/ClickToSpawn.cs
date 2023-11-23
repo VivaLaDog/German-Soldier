@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
 
 public class ClickToSpawn : MonoBehaviour
@@ -19,10 +20,11 @@ public class ClickToSpawn : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
+            
             var ray = cam.ScreenPointToRay(Input.mousePosition);
             if(Physics.Raycast(ray, out RaycastHit hit, 20f))
             {
-                Instantiate(cedule);
+                Instantiate(cedule, hit.point, Quaternion.identity);
             }
 
         }
