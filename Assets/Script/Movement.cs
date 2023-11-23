@@ -18,10 +18,13 @@ public class Movement : MonoBehaviour
     [SerializeField]
     TMPro.TMP_Text scoreText;
 
+    [SerializeField]
+    GameObject nextScene;
+
     int dir = 0;
     int score;
     bool bump;
-    
+
 
     // Update is called once per frame
     void Update()
@@ -38,6 +41,13 @@ public class Movement : MonoBehaviour
         {
             brana.SetActive(false);
         }
+
+        if(transform.position.x >= 6)
+        {
+            nextScene.SetActive(true);
+            Time.timeScale = 0;
+        }
+
     }
 
     private void Move()
