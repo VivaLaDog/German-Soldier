@@ -23,20 +23,25 @@ public class Movement : MonoBehaviour
 
     int dir = 0;
     int score;
-    bool bump;
+    bool? bump = false;
 
 
     // Update is called once per frame
     void Update()
     {
-        /*if (bump)
+        if (bump == true)
         {
-            MoveBack();
+            ReverseMove();
         }
         else if (bump == false)
-        {*/
+        {
             Move();
-        //}
+        } else if (bump == null)
+        {
+
+        }
+
+
         if(score == 4)
         {
             brana.SetActive(false);
@@ -77,7 +82,11 @@ public class Movement : MonoBehaviour
     {
         transform.Translate(tx * Time.deltaTime * speed, 0, tz * Time.deltaTime * speed);
     }
-    
+    private void RDirMove(int tx, int tz)
+    {
+        transform.Translate(tx * Time.deltaTime * -speed, 0, tz * Time.deltaTime * -speed);
+    }
+
     private void ChangeDir()
     {
         if (dir == 3 || dir >= 3)
@@ -87,16 +96,44 @@ public class Movement : MonoBehaviour
         else { dir++; }
     }
 
-    /*IEnumerator MoveBack()
+    private void ReverseMove()
     {
-        Debug.Log("Moveback!");
-        dir++; dir++;
-        Move();
-        yield return new WaitForSeconds(2);
+        //right
+        if(dir == 0)
+        {
+            RDirMove(1, 0);
+        }
+        //down
+        if (dir == 1)
+        {
+            RDirMove(0, -1);
+        }
+        //left
+        if (dir == 2)
+        {
+            RDirMove(-1, 0);
+        }
+        //up
+        if (dir == 3)
+        {
+            RDirMove(0, 1);
+        }
+    }
+
+    IEnumerator VoidWaitable()
+    {
+        bump = null;
+        yield return new WaitForSeconds(0.1f);
+
+        bump = true;
+        yield return new WaitForSeconds(0.2f);
+
+        bump = null;
+        yield return new WaitForSeconds(0.1f);
         bump = false;
-        dir++; dir++;
+
         ChangeDir();
-    }*/
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -106,9 +143,10 @@ public class Movement : MonoBehaviour
         {
             if(collision.gameObject.name.Contains("Cedule"))
             {
-                bump = true;
+                StopAllCoroutines();
 
-                ChangeDir();
+                StartCoroutine(VoidWaitable());
+
             }
             if(collision.gameObject.name.Contains("Mina"))
             {
