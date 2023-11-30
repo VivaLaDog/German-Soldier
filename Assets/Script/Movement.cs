@@ -29,13 +29,14 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         if (bump == true)
         {
-            ReverseMove();
+            Move(false);
         }
         else if (bump == false)
         {
-            Move();
+            Move(true);
         } else if (bump == null)
         {
 
@@ -55,36 +56,35 @@ public class Movement : MonoBehaviour
 
     }
 
-    private void Move()
+    private void Move(bool fwrd)
     {
-        //right
-        if(dir == 0)
+        switch (dir)
         {
-            DirMove(1, 0);
-        }
-        //down
-        if (dir == 1)
-        {
-            DirMove(0, -1);
-        }
-        //left
-        if (dir == 2)
-        {
-            DirMove(-1, 0);
-        }
-        //up
-        if (dir == 3)
-        {
-            DirMove(0, 1);
+            case 0:
+                DirMove(1, 0, fwrd);
+                break;
+            case 1:
+                DirMove(0, -1, fwrd);
+                break;
+            case 2:
+                DirMove(-1, 0, fwrd);
+                break;
+            case 3:
+                DirMove(0, 1, fwrd);
+                break;
         }
     }
-    private void DirMove(int tx, int tz)
+    private void DirMove(int tx, int tz, bool fwrd)
     {
-        transform.Translate(tx * Time.deltaTime * speed, 0, tz * Time.deltaTime * speed);
-    }
-    private void RDirMove(int tx, int tz)
-    {
-        transform.Translate(tx * Time.deltaTime * -speed, 0, tz * Time.deltaTime * -speed);
+        if (fwrd)
+        {
+            transform.Translate(tx * Time.deltaTime * speed, 0, tz * Time.deltaTime * speed);
+        }
+        else
+        {
+            transform.Translate(tx * Time.deltaTime * -speed, 0, tz * Time.deltaTime * -speed);
+        }
+
     }
 
     private void ChangeDir()
@@ -94,30 +94,6 @@ public class Movement : MonoBehaviour
             dir = 0;
         }
         else { dir++; }
-    }
-
-    private void ReverseMove()
-    {
-        //right
-        if(dir == 0)
-        {
-            RDirMove(1, 0);
-        }
-        //down
-        if (dir == 1)
-        {
-            RDirMove(0, -1);
-        }
-        //left
-        if (dir == 2)
-        {
-            RDirMove(-1, 0);
-        }
-        //up
-        if (dir == 3)
-        {
-            RDirMove(0, 1);
-        }
     }
 
     IEnumerator VoidWaitable()
@@ -164,8 +140,6 @@ public class Movement : MonoBehaviour
                 Destroy(collision.gameObject);
             }
         }
-
-                //Destroy(collision.gameObject); // - only delete if its a score changer
     }
 
     private void Death()
