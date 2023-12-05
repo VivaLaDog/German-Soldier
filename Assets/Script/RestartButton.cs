@@ -24,7 +24,7 @@ public class RestartButton : MonoBehaviour
     {
         if(SceneManager.GetActiveScene().buildIndex + 1 > 2)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            RestartGame();
         }
         else
         {
