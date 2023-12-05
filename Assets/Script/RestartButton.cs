@@ -7,9 +7,11 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class RestartButton : MonoBehaviour
 {
+
     void Start()
     {
         Time.timeScale = 0;
