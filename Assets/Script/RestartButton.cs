@@ -17,14 +17,11 @@ public class RestartButton : MonoBehaviour
 
     public void RestartGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name); // loads current scene
-        //Time.timeScale = 1.0f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void NextRound()
     {
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().name); // loads current scene
-        //Time.timeScale = 1.0f;
         if(SceneManager.GetActiveScene().buildIndex + 1 > 2)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
@@ -33,9 +30,6 @@ public class RestartButton : MonoBehaviour
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
-
-        
-        
     }
     public void StartGame()
     {

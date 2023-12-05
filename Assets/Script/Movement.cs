@@ -41,7 +41,7 @@ public class Movement : MonoBehaviour
         {
 
         }
-
+        
 
         if(score == 4)
         {
