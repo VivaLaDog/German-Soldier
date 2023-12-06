@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: 203231ab1d2430b48a605e0b894867ec
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - coko: {fileID: 821793497517596759, guid: 79f9160f8ea94b149b5c907b502a190d, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

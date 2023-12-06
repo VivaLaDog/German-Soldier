@@ -43,7 +43,7 @@ public class Movement : MonoBehaviour
         }
         
 
-        if(score == 4)
+        if(score >= 4)
         {
             brana.SetActive(false);
         }
