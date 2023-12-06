@@ -30,17 +30,18 @@ public class Movement : MonoBehaviour
     void Update()
     {
         
-        if (bump == true)
+        if (bump == null)
+        {
+
+        }
+        else if (bump == true)
         {
             Move(false);
         }
         else if (bump == false)
         {
             Move(true);
-        } else if (bump == null)
-        {
-
-        }
+        } 
         
 
         if(score >= 4)
