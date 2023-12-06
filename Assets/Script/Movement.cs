@@ -139,6 +139,10 @@ public class Movement : MonoBehaviour
                 score++;
                 Destroy(collision.gameObject);
             }
+            if (collision.gameObject.name.Contains("Brana"))
+            {
+                Death();
+            }
         }
     }
 
